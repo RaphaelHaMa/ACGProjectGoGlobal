@@ -37,10 +37,10 @@ namespace ACGProjectGoGlobal.Web.Startup
             services.AddSession();
 
 
-            services.AddSingleton<ICosmosDbService>(
-                InitializeCosmosClientInstanceAsync(AppConfigurations
-                        .Get(WebContentDirectoryFinder.CalculateContentRootFolder()).GetSection("CosmosDB"))
-                    .GetAwaiter().GetResult());
+            //services.AddSingleton<ICosmosDbService>(
+            //    InitializeCosmosClientInstanceAsync(AppConfigurations
+            //            .Get(WebContentDirectoryFinder.CalculateContentRootFolder()).GetSection("CosmosDB"))
+            //        .GetAwaiter().GetResult());
 
             //Configure Abp and Dependency Injection
             return services.AddAbp<ACGProjectGoGlobalWebModule>(options =>

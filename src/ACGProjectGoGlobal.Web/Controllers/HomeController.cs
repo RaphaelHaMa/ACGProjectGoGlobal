@@ -11,11 +11,11 @@ namespace ACGProjectGoGlobal.Web.Controllers
 {
     public class HomeController : ACGProjectGoGlobalControllerBase
     {
-        private readonly ICosmosDbService _cosmosDbService;
-        public HomeController(ICosmosDbService cosmosDbService)
-        {
-            _cosmosDbService = cosmosDbService;
-        }
+        //private readonly ICosmosDbService _cosmosDbService;
+        //public HomeController(ICosmosDbService cosmosDbService)
+        //{
+        //    _cosmosDbService = cosmosDbService;
+        //}
 
         public ActionResult Index()
         {
@@ -24,19 +24,20 @@ namespace ACGProjectGoGlobal.Web.Controllers
 
         [HttpPost]
         [DisableValidation]
-        public async Task<RedirectToActionResult> Index(UserViewModel model)
+        //public async Task<RedirectToActionResult> Index(UserViewModel model)
+        public void Index(UserViewModel model)
         {
             // Store the data in session
-            //var key = Guid.NewGuid().ToString(); 
-            //var str = JsonConvert.SerializeObject(model);
-            //HttpContext.Session.SetString(key, str);
+            var key = Guid.NewGuid().ToString();
+            var str = JsonConvert.SerializeObject(model);
+            HttpContext.Session.SetString(key, str);
 
-            //// Use this to retrieve the value if you want
-            //var storedValue = HttpContext.Session.GetString(key);
-            //var obj = JsonConvert.DeserializeObject<UserViewModel>(str);
+            // Use this to retrieve the value if you want
+            var storedValue = HttpContext.Session.GetString(key);
+            var obj = JsonConvert.DeserializeObject<UserViewModel>(str);
 
-            await _cosmosDbService.AddItemAsync(model.GetUser());
-            return RedirectToAction("Index");
+            //await _cosmosDbService.AddItemAsync(model.GetUser());
+            //return RedirectToAction("Index");
         }
 
         public ActionResult About()
